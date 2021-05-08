@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<person Name="人员信息" version="1.0">
+    <students Name = '大学生'>
+        <student id = "2021041401">
+            <姓名>陶晶</姓名>
+            <性别>男</性别>
+            <专业>计算机</专业>
+        </student>
+        <student id = "2021041402">
+            <姓名>马浩</姓名>>
+            <性别>男</性别>
+            <专业>美术</专业>>
+        </student>>
+        <student id = "2021041403">
+            <姓名>田禾</姓名>
+            <性别>男</性别>
+            <专业>计算机</专业>
+        </student>
+    </students>
+    <students Name = '小学生'>
+        <student id = "2021031401">
+            <姓名>陶小晶</姓名>
+            <性别>男</性别>
+            <专业>计算机</专业>
+        </student>
+        <student id = "2021031402">
+            <姓名>马小浩</姓名>>
+            <性别>男</性别>
+            <专业>美术</专业>>
+        </student>>
+        <student id = "2021031403">
+            <姓名>田小禾</姓名>
+            <性别>男</性别>
+            <专业>计算机</专业>
+        </student>
+    </students>
+</person>
