@@ -4,7 +4,8 @@
 HTML_BASE_TEMPLATE = './static/template/base.html'
 
 HTML_BODY = """
-<body bgcolor="${bgcolor}" leftmargin="${leftmargin}" topmargin="${topmargin}" marginwidth="${marginwidth}" marginheight="${marginheight}"> 
+<body bgcolor="${bgcolor}" leftmargin="${leftmargin}" topmargin="${topmargin}" marginwidth="${marginwidth}" 
+marginheight="${marginheight}"${onmousemove}${onload}> 
 ${body} 
 </body>
 """
@@ -14,7 +15,7 @@ HTML_SCRIPT = """
 """
 
 HTML_DIV = """
-    <div ${id}> ${div} </div>
+    <div ${id} ${html_class}> ${div} </div>
 """
 
 HTML_NOBR = """
@@ -25,7 +26,7 @@ HTML_H1 = """
 <h1> ${h1} </h1>
 """
 HTML_A = """
-<a href=${href} ${target} ${title}> ${a}  </a>
+<a href="${href}"${onclick} ${ondblclick} ${target} ${title} ${onmousemove}> ${a}  </a>
 """
 
 HTML_P = """
@@ -57,12 +58,12 @@ HTML_VIDEO = """
 """
 
 HTML_IMG = """
-    <img id="${id}" src="${src}" class="${html_class}">
+    <img ${id}src="${src}" class="${html_class}">
 """
 
 
 HTML_SPAN = """
-    <span id="${id}" class="${html_class}">${span}  </span>
+    <span id="${id}" class="${html_class}">${span}</span>
 """
 
 HTML_AUDIO = """

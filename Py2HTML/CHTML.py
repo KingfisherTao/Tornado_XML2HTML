@@ -1,12 +1,19 @@
 # coding=utf-8
 # python 的 HTML 基类
 from os.path import abspath, dirname
+from traceback import print_exc
 from Py2HTML.Py2HTML import Py2HTML
 from Py2HTML.HTML_Template import HTML_BASE_TEMPLATE, HTML_NAV_LIST
 
+# 这里是可选库导入的异常捕获，这个库是为了输出html时格式可读。此异常可忽略，不影响程序正常运行
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    BeautifulSoup = None
+
 # 定义一些常量
-_Temp_href = 0
-_Temp_Name = 1
+TEMP_HREF = 0
+TEMP_NAME = 1
 
 
 class CHTML(Py2HTML):
@@ -18,16 +25,21 @@ class CHTML(Py2HTML):
             with open(HTML_BASE_TEMPLATE, "r", encoding="utf-8") as base:
                 self.html = base.read()
         except Exception as error:
-            print(error)
+            print('CHTML.__init__ :', error)
+            print_exc()
 
         # 定义顶部导航
-        _tempList = []
-        for item in HTML_NAV_LIST:
-            _tempList.append(f'<li><a href={item[_Temp_href]}> {item[_Temp_Name]} </a></li> \n')
-        _nav = self.navTemp.safe_substitute(nav=''.join(_tempList))
-        _divNav = self.divTemp.safe_substitute(div=_nav)
+        self.NAV = self.makeNav(HTML_NAV_LIST)
 
-        self.NAV = _divNav
+    def makeNav(self, navList: list) -> str:
+        """基于 navList 构造导航栏"""
+        _tempList = []
+        for item in navList:
+            _tempList.append(f'<li><a href={item[TEMP_HREF]}> {item[TEMP_NAME]} </a></li> \n')
+
+        _nav = self.element('nav', nav=''.join(_tempList))
+        _div = self.element('div', id='', html_class='', div=_nav)
+        return _div
 
     def setTitle(self, title: str):
         self.html = self.html.replace('<title/>', title)
@@ -40,4 +52,4 @@ class CHTML(Py2HTML):
 
     def Write2HTML(self, filePath: str):
         with open(f'{dirname(dirname(abspath(__file__)))}{filePath}', 'w+', encoding='utf-8') as f:
-            f.write(self.html)
+            f.write(BeautifulSoup(self.html, 'html.parser').prettify()) if BeautifulSoup else f.write(self.html)

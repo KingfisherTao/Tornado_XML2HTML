@@ -9,8 +9,8 @@ class CHTML_Audio(CHTML):
         super(CHTML_Audio, self).__init__()
 
         # 定义音频 div
-        _h1 = self.h1Temp.safe_substitute(h1=h1Str)
-        _audio = self.audioTemp.safe_substitute(src=audioSrc)
-        _div = self.divTemp.safe_substitute(div=f'{_h1}{_audio}')
+        _h1 = self.element('h1', h1=h1Str)
+        _audio = self.element('audio', src=audioSrc)
+        _div = self.element('div', id='', html_class='', div=f'{_h1}{_audio}')
 
         self.setBody(f'{self.NAV}{_div}')

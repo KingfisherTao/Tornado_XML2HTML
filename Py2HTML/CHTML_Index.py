@@ -9,7 +9,7 @@ class CHTML_Index(CHTML):
         super(CHTML_Index, self).__init__()
 
         # 定义首页 信息
-        _h1 = self.h1Temp.safe_substitute(h1='Index')
-        _div = self.divTemp.safe_substitute(div=f'{_h1}{body}')
+        _h1 = self.element('h1', h1='Index')
+        _div = self.element('div', id='', html_class='', div=f'{_h1}{body}')
 
         self.setBody(f'{self.NAV}{_div}')

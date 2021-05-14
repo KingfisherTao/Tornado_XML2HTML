@@ -9,8 +9,8 @@ class CHTML_Video(CHTML):
         super(CHTML_Video, self).__init__()
 
         # 定义视频 div
-        _h1 = self.h1Temp.safe_substitute(h1=h1Str)
-        _video = self.videoTemp.safe_substitute(src=videoSrc, width=width, height=height)
-        _div = self.divTemp.safe_substitute(div=f'{_h1}{_video}')
+        _h1 = self.element('h1', h1=h1Str)
+        _video = self.element('video', src=videoSrc, width=width, height=height)
+        _div = self.element('div', id='', html_class='', div=f'{_h1}{_video}')
 
         self.setBody(f'{self.NAV}{_div}')

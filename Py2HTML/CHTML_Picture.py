@@ -9,8 +9,8 @@ class CHTML_Picture(CHTML):
         super(CHTML_Picture, self).__init__()
 
         # 定义图片 div
-        _h1 = self.h1Temp.safe_substitute(h1=h1Str)
-        _img = self.imgTemp.safe_substitute(src=imgSrc)
-        _div = self.divTemp.safe_substitute(div=f'{_h1}{_img}')
+        _h1 = self.element('h1', h1=h1Str)
+        _img = self.element('img', id='', html_class='', src=imgSrc)
+        _div = self.element('div', id='', html_class='', div=f'{_h1}{_img}')
 
         self.setBody(f'{self.NAV}{_div}')
