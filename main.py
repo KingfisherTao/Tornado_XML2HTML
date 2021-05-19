@@ -1,9 +1,9 @@
 # coding=utf-8
-from os import path
+from os.path import join, dirname
 from tornado import ioloop
 from tornado.web import Application, StaticFileHandler
 from tornado.options import define, options
-from RequestHandler.RequesDic import TornadoHandler
+from RequestHandler import *
 
 if __name__ == '__main__':
     define('port', default='8000', type=int, help="listening port")
@@ -12,8 +12,7 @@ if __name__ == '__main__':
     # 创建路由 handler
     _handlers = [
         # 网页左上角的icon
-        (r'favicon.ico', StaticFileHandler, dict(url=path.join(path.dirname(__file__), '/static/icons/FF7.ico'),
-                                                 permanent=False)),
+        (r'favicon.ico', StaticFileHandler, dict(url=join(dirname(__file__), '/static/icons/FF7.ico'), permanent=False)),
     ]
 
     # 添加需要路由的页面

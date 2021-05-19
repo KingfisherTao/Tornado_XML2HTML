@@ -6,7 +6,7 @@ try:
     from xml.etree.cElementTree import parse
 except ImportError:
     from xml.etree.ElementTree import parse
-from tools.xmlFunc import printElementByRootNode, getElementsByTagName
+from tools import *
 
 
 # t
